@@ -11,9 +11,10 @@ const loadData = () => {
         .then(res => res.json())
         .then(data => displayBook(data));
 }
-
+let test;
 const displayBook = data => {
     spiner.style.display = 'none';
+    test = data;
     // result found section 
     const resultContainer = document.getElementById('result-container');
     const resultFound = document.createElement('div');
@@ -56,8 +57,8 @@ const displayBook = data => {
             <p class="card-text"><span class="text-danger">Publisher:</span> ${resultUndefined(book?.publisher)}</p>
         </div>
             <div class="card-footer">
-            <small class="text-muted"><span class="text-primary">First Publish Year:</span> ${resultUndefined(book?.first_publish_year)}</small>
-            <small class="text-muted"><span class="text-primary">Publish Date:</span> ${resultUndefined(book?.publish_date)}</small>
+            <p><small class="text-muted"><span class="text-primary">First Publish Year:</span> ${resultUndefined(book?.first_publish_year)}</small></p>
+            <p><small class="text-muted"><span class="text-primary">Publish Date:</span> ${resultUndefined(book?.publish_date)}</small></p>
             </div>
         </div>
         `
@@ -70,7 +71,10 @@ const resultUndefined = result => {
     if (!result) {
         return 'Not in database';
     }
-    else {
+    if (typeof result === 'number' || typeof result === 'string') {
         return result;
+    }
+    if (typeof result === 'object') {
+        return result[0];
     }
 }
