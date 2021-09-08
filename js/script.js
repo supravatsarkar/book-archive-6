@@ -41,7 +41,7 @@ const displayBook = data => {
         let imgUrl;
 
         if (!book.cover_i) {
-            imgUrl = `https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132484366.jpg`;
+            imgUrl = `https://covers.openlibrary.org/b/id/10909258-M.jpg`;
         }
         else {
             imgUrl = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
@@ -56,8 +56,8 @@ const displayBook = data => {
             <p class="card-text"><span class="text-danger">Publisher:</span> ${resultUndefined(book?.publisher)}</p>
         </div>
             <div class="card-footer">
-            <small class="text-muted">First publish year: ${resultUndefined(book?.first_publish_year)}</small>
-            <small class="text-muted">Publish Date: ${resultUndefined(book?.publish_date)}</small>
+            <small class="text-muted"><span class="text-primary">First Publish Year:</span> ${resultUndefined(book?.first_publish_year)}</small>
+            <small class="text-muted"><span class="text-primary">Publish Date:</span> ${resultUndefined(book?.publish_date)}</small>
             </div>
         </div>
         `
