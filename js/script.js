@@ -7,7 +7,6 @@ const loadData = () => {
     const inputFieldText = inputField.value;
     inputField.value = '';
     const url = `https://openlibrary.org/search.json?q=${inputFieldText}`;
-    // console.log(url);
     fetch(url)
         .then(res => res.json())
         .then(data => displayBook(data));
@@ -28,7 +27,6 @@ const displayBook = data => {
         <h5 class="text-center ">Result found: ${data.numFound}</h5> 
     `
     }
-
     resultContainer.appendChild(resultFound);
     console.log(data);
 
@@ -51,10 +49,11 @@ const displayBook = data => {
         // console.log(book.author_name);
         div.innerHTML = `
         <div class="card h-100">
-            <img src="${imgUrl}" class="card-img-top w-50 mx-auto" alt="...">
+            <img src="${imgUrl}" class="card-img-top w-50 mx-auto mt-2 border border-1 border-danger" alt="...">
             <div class="card-body">
-            <h5 class="card-title">${book.title}</h5>
-            <p class="card-text">by ${resultUndefined(book?.author_name)}</p>
+            <h5 class="card-title">${book.title.slice(0, 15)}</h5>
+            <p class="card-text "><span class="text-danger">Author:</span> ${resultUndefined(book?.author_name)}</p>
+            <p class="card-text"><span class="text-danger">Publisher:</span> ${resultUndefined(book?.publisher)}</p>
         </div>
             <div class="card-footer">
             <small class="text-muted">First publish year: ${resultUndefined(book?.first_publish_year)}</small>
@@ -65,6 +64,7 @@ const displayBook = data => {
         booksContainer.appendChild(div);
     })
 }
+
 
 const resultUndefined = result => {
     if (!result) {
